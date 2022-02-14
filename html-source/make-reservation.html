@@ -18,6 +18,9 @@
       .room-image {
         max-width: 50%;
       }
+      .redText {
+        color: red;
+      }
     </style>
 </head>
 <body>
@@ -57,30 +60,36 @@
     <div class="container">
 
         <div class="row">
-          <div class="col-md-3"></div>
-          <div class="col-md-6">
-            <h1 class="mt-5">Search for Room Availability</h1>
-            
-            <form action="reservation.html" method="get">
-              <div class="row">
-                <div class="col">
-                  <div class="form-group">
-                    <label for="start_date" class="form-label">Starting Date</label>
-                    <input required type="date" class="form-control" id="start_date" name="start_date" aria-describedby="startDateHelp">
-                    <div id="startDateHelp" class="form-text">Enter your starting date(in YYYY-MM-DD).</div>
-                  </div>
+          <div class="col">
+            <h1>Make Reservation</h1>
+            <form method="post" action="" class="needs-validation" novalidate>
+                <div class="form-group mt-5">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" name="first_name" id="first_name" class="form-control" required autocomplete="off">
                 </div>
-                <div class="col">
-                  <div class="form-group">
-                    <label for="end_date" class="form-label">Ending Date</label>
-                    <input required type="date" class="form-control" id="end_date" name="end_date" aria-describedby="endDateHelp">
-                    <div id="endDateHelp" class="form-text">Enter your ending date(in YYYY-MM-DD).</div>
-                  </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" name="last_name" id="last_name" class="form-control" required autocomplete="off">
                 </div>
-              </div>
-             
-              <button type="submit" class="btn btn-primary">Search Availability</button>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" id="email" class="form-control" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="text" name="phone" id="phone" class="form-control" required autocomplete="off">
+                </div>
+                <hr>
+                <input type="submit" class="btn btn-primary" value="Make Reservation">
             </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <p id="myParagraph">This is some text</p>
+            <p>
+              <button id="colorButton" class="btn btn-outline-secondary">Click Me to Change Color</button>
+            </p>
           </div>
         </div>
     </div>
@@ -98,6 +107,39 @@
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script>
+      console.log("I am priting from JavaScript embedded in Html");
+
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        let forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+          .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+              if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+              }
+
+              form.classList.add('was-validated')
+            }, false)
+          })
+      })()
+
+      document.getElementById("colorButton").addEventListener("click", function() {
+        let myEl = document.getElementById("myParagraph")
+        if (myEl.classList.contains("redText")) {
+          myEl.classList.remove("redText");
+        } else {
+          myEl.classList.add("redText");
+        }
+      })
+    </script>
     <p>This is para</p>
 </body>
 </html>
