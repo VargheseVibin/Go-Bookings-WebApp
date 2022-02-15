@@ -28,7 +28,7 @@ func NewHandlers(r *Repository) {
 func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 	remoteIP := r.RemoteAddr
 	m.AppConfig.Session.Put(r.Context(), "remote_ip", remoteIP)
-	render.RenderTemplate(w, "home.page.html", &models.TemplateData{})
+	render.RenderTemplate(w, "home.page.gohtml", &models.TemplateData{})
 }
 
 func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
@@ -37,5 +37,28 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 
 	remoteIP := m.AppConfig.Session.GetString(r.Context(), "remote_ip")
 	stringMap["remote_ip"] = remoteIP
-	render.RenderTemplate(w, "about.page.html", &models.TemplateData{StringMap: stringMap})
+	render.RenderTemplate(w, "about.page.gohtml", &models.TemplateData{StringMap: stringMap})
+}
+
+func (m *Repository) Reservation(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "make-reservation.page.gohtml", &models.TemplateData{})
+}
+
+func (m *Repository) Generals(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "generals.page.gohtml", &models.TemplateData{})
+}
+
+// Majors renders the room page
+func (m *Repository) Majors(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "majors.page.gohtml", &models.TemplateData{})
+}
+
+// Availability renders the search availabulit page
+func (m *Repository) Availability(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "search-availability.gohtml", &models.TemplateData{})
+}
+
+// Contact renders the contact page
+func (m *Repository) Contact(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "contact.page.gohtml", &models.TemplateData{})
 }
